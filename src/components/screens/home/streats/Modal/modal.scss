@@ -1,0 +1,46 @@
+.MuiBox-root{
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 50px 50px !important;
+    & input{
+        color: #0B6BCB;
+        letter-spacing: 1px;
+    }
+
+}
+
+.modal__button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30px;
+    & button{
+        background-color: #0B6BCB;
+        &:hover{
+            background-color: #0f60b2;
+        }
+    }
+}
+
+.modal__oclock{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    & label{
+        
+        padding-bottom: 24px;
+        & span{
+            padding-bottom: 20px ;
+            font-size: 18px;
+            text-align: left;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: #0B6BCB;
+        }
+        & input{
+            width: 150px;
+            display: inline-block;
+        }
+    }
+}
