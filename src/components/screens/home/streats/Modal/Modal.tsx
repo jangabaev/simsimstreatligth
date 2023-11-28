@@ -10,23 +10,23 @@ interface IModal {
   open: boolean;
 }
 const ModalStreat: React.FC<IModal> = ({ open, setModal }) => {
-  const [postStreat,{data}]=usePostStreatMutation()
+  const [postStreat, { data }] = usePostStreatMutation();
   const [streat, setStreat] = React.useState({
     name: "",
-      location: "",
-      state: true,
-      is_on_time: "",
-      is_off_time: ""
+    location: "",
+    state: true,
+    is_on_time: "",
+    is_off_time: "",
+    imei:""
   });
   const addstreat = () => {
-    postStreat(streat)
-
+    postStreat(streat);
   };
-  React.useEffect(()=>{
-    if(data?.name){
-      setModal(false)
+  React.useEffect(() => {
+    if (data?.name) {
+      setModal(false);
     }
-  },[data])
+  }, [data]);
   return (
     <>
       <Modal
@@ -48,24 +48,49 @@ const ModalStreat: React.FC<IModal> = ({ open, setModal }) => {
             p: 4,
           }}
         >
+          <label>
+            Imei
+            <Input
+              onChange={(e) =>
+                setStreat((el) => ({ ...el, imei: e.target.value }))
+              }
+              type="number"
+              placeholder="koshinizdi kiritin'"
+            />
+          </label>
           <div className="modal__oclock">
             <label>
               <span>janiw waqiti</span>
-              <Input type="time" onChange={(e)=>setStreat((el)=>({...el,is_on_time:e.target.value}))}/>
+              <Input
+                type="time"
+                onChange={(e) =>
+                  setStreat((el) => ({ ...el, is_on_time: e.target.value }))
+                }
+              />
             </label>
             <label>
               <span>oshiw waqiti</span>
-              <Input type="time"  onChange={(e)=>setStreat((el)=>({...el,is_off_time:e.target.value}))}/>
+              <Input
+                type="time"
+                onChange={(e) =>
+                  setStreat((el) => ({ ...el, is_off_time: e.target.value }))
+                }
+              />
             </label>
           </div>
           <label>
             qalaniz ati
-          <Input   onChange={(e)=>setStreat((el)=>({...el,name:e.target.value}))} placeholder="koshinizdi kiritin'"/>
+            <Input
+              onChange={(e) =>
+                setStreat((el) => ({ ...el, name: e.target.value }))
+              }
+              placeholder="koshinizdi kiritin'"
+            />
           </label>
           <div className="modal__button">
-          <Button onClick={addstreat} variant="contained" color="secondary">
-            qosiw
-          </Button>
+            <Button onClick={addstreat} variant="contained" color="secondary">
+              qosiw
+            </Button>
           </div>
         </Box>
       </Modal>

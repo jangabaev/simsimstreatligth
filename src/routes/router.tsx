@@ -14,7 +14,7 @@ const Router: React.FC = () => {
         <Route element={<ProkteRoute />}>
           <Route path="/admin" element={<Layout />}>
             <Route path="/admin" element={<Home />} />
-            <Route path="/admin/:streat/:id" element={<Home />} />
+            <Route path="/admin/:streat/:imei" element={<Home />} />
           </Route>
         </Route>
       </Routes>

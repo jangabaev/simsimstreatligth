@@ -3,14 +3,14 @@ import { IGetHomeArray, IPostStreat,IGetHome } from '../../types/data'
 
 export const userRTK = createApi({
   reducerPath: 'streats',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://simsim1.pythonanywhere.com/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://86.107.197.112/' }),
   tagTypes: ['streats'],
   endpoints: (builder) => ({
     oneGetStreat:builder.query<IGetHome,{id:string}>({
-      query:(data)=>`/device_list/${data.id}`
+      query:(data)=>`/device-detail/${data.id}`
     }),
     getStreats: builder.query<IGetHomeArray,null>({
-      query: () => `/device_list/`,
+      query: () => `device-list`,
       providesTags: (result) =>
                 result
                     ? [
@@ -21,22 +21,22 @@ export const userRTK = createApi({
     }),
     postStreat:builder.mutation<IPostStreat,IPostStreat>({
       query:(data)=>({
-        url: 'device_list/',
+        url: 'device-list/',
         method: 'POST',
         body: data,
       }),
       invalidatesTags: [{ type: 'streats', id: 'List' }],
     }),
-    deleteStreat:builder.mutation<{message:string},{id:number}>({
+    deleteStreat:builder.mutation<{message:string},{imie:string}>({
       query:(data)=>({
-        url:`device_list/${data.id}`,
+        url:`device-detail/${data.imie}`,
         method:"DELETE"
       }),
       invalidatesTags: [{ type: 'streats', id: 'List' }],
     }),
-    putStreat:builder.mutation<IPostStreat,{data:IPostStreat,id:string}>({
+    putStreat:builder.mutation<IPostStreat,{data:IPostStreat,imei:string}>({
       query:(data)=>({
-        url:`/device_list/${data.id}`,
+        url:`device-detail/${data.imei}`,
         method:"PUT",
         body:data.data
       }),

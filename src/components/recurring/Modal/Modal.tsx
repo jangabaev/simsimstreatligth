@@ -1,36 +1,37 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Modal from "@mui/joy/Modal";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import "./modal.scss";
 interface IModal {
-  setModal: React.Dispatch<React.SetStateAction<{
+  setModal: React.Dispatch<
+    React.SetStateAction<{
+      open: boolean;
+      oclock: string | undefined;
+      text: string;
+    }>
+  >;
+  data: {
     open: boolean;
-    oclock: string|undefined;
+    oclock: string | undefined;
     text: string;
-}>>
-  data:{
-    open: boolean;
-    oclock: string|undefined;
-    text: string;
-}
-  
+  };
 }
 const ModalRecuring: React.FC<IModal> = ({ data, setModal }) => {
-  const [value,setValue]=useState("18:00")
+  const [value, setValue] = useState("18:00");
 
   const modalClick = () => {
-    setModal((prev)=>({...prev,open:!prev.open,oclock:value}))
+    setModal((prev) => ({ ...prev, open: !prev.open, oclock: value }));
   };
   const hendleChange = (el: string) => {
-    setValue(el)
+    setValue(el);
   };
 
   return (
     <>
       <Modal
         open={data.open}
-        onClose={() => setModal((prev)=>({...prev,open:!prev.open}))}
+        onClose={() => setModal((prev) => ({ ...prev, open: !prev.open }))}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

@@ -19,7 +19,7 @@ const Login: React.FC = () => {
 
   const hendelSubmit = () => {
     localStorage.setItem("user", JSON.stringify(data));
-    history("/admin/1-koshe/1");
+    history("/admin");
   };
   return (
     <div className="loginin">

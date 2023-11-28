@@ -9,7 +9,7 @@
 }
 
 .streats__element ul li{
-    padding: 7px 0px;
+    padding: 7px 5px;
     font-size: 18px;
     display: flex;
     align-items: center;
@@ -17,10 +17,20 @@
     color: #6243C4;
     font-weight: 500;
     position: relative;
-    border-bottom:1px solid #6243C4 ;
+    // border-bottom:1px solid #6243C4 ;
     cursor: pointer;
+    border-radius: 8px;
 }
 
+.streats__element ul li a{
+    list-style: none;
+    text-decoration: none;
+    color: #6243C4;
+}
+
+.streats__element ul li.active{
+    background-color: rgb(246, 246, 246);
+}
 
 .streats__element ul li a span{
     color: #6243C4;;

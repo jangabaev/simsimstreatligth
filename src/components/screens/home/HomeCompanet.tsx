@@ -9,7 +9,7 @@ interface IHome{
   data: IGetHomeArray 
 }
 const HomeCompanet:React.FC<IHome> = ({data}) => {
-  const {id}=useParams()
+  const {imei}=useParams()
   return (
     <section className="home">
       <div className="home__left">
@@ -17,7 +17,7 @@ const HomeCompanet:React.FC<IHome> = ({data}) => {
       </div>
       <div className="home__rigth">
         {
-          id? <HomeItem id={id}/>:<InfoHome/>
+          imei? <HomeItem imei={imei}/>:<InfoHome/>
         }
        
       </div>

@@ -12,7 +12,7 @@ const Navbar:React.FC = () => {
         <div className="navbar">
             <div className="navbar__left">
                 <img src={Img} alt="" />
-                <h2>SimSim Streat Late</h2>
+                <h2>SimSim Street Light </h2>
             </div>
             <div className="navbar__rigth">
                 <div className="navbar__rigth__user">

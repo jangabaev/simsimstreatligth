@@ -5,6 +5,7 @@ export interface IGetHome {
   location: string;
   name: string;
   state: boolean;
+  imei:string;
 };
 
 export interface IPostStreat{
@@ -14,6 +15,7 @@ export interface IPostStreat{
   location: string;
   name: string;
   state: boolean;
+  imei:string;
 }
 
 export type IGetHomeArray = IGetHome[];

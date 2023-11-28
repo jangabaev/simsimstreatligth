@@ -1,13 +1,14 @@
-import React, { useRef } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
+import { NavLink,useParams } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
-import Input from "@mui/joy/Input";
+import SearchInput from "./SearchInput/SearchInput";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ModalStreat from "./Modal/Modal";
 import { IGetHomeArray } from "../../../../types/data";
 import { useDeleteStreatMutation } from "../../../../store/userRTK/userRTK";
-import {LoadingOutlined} from "@ant-design/icons"
+import { LoadingOutlined } from "@ant-design/icons";
 import "./streats.scss";
+
 
 interface IHome {
   dataStreat: IGetHomeArray;
@@ -15,23 +16,14 @@ interface IHome {
 
 const Streats: React.FC<IHome> = ({ dataStreat }) => {
   const [modal, setModal] = React.useState(false);
+  const [deleteId, setDeleteId] = React.useState("");
+  const {imei}=useParams()
 
-  const [deleteStreatAsync, {isLoading}] = useDeleteStreatMutation();
+  const [deleteStreatAsync, { isLoading }] = useDeleteStreatMutation();
 
-  const [value, setValue] = React.useState("");
-  console.log(value);
-  const timer = useRef();
-
-  const hendleChange = async (el: string) => {
-    clearTimeout(timer.current);
-    //@ts-ignore
-    timer.current = setTimeout(() => {
-      setValue(el);
-    }, 500);
-  };
-
-  const deleteStreat = (id: number) => {
-    deleteStreatAsync({ id: id });
+  const deleteStreat = (imie: string) => {
+    deleteStreatAsync({ imie });
+    setDeleteId(imie);
   };
 
   return (
@@ -39,27 +31,27 @@ const Streats: React.FC<IHome> = ({ dataStreat }) => {
       <div className="streats">
         <div className="streat__top">
           <div className="strate__input">
-            <Input
-              placeholder="kosheni izlew"
-              onChange={(el) => hendleChange(el.target.value)}
-            />
+            <SearchInput/>
           </div>
         </div>
         <div className="streats__element">
           <ul>
             {dataStreat?.map((el, prop) => {
               return (
-                <li key={el.id}>
-                  <NavLink to={`/admin/${el.name}/${el.id}`} key={el.id}>
+                <li key={el.id} className={imei?el.imei===imei?"active":"":""}>
+                  <NavLink to={`/admin/${el.name}/${el.imei}`} key={el.id}>
                     <span>{prop + 1}</span> {el.name}
                   </NavLink>
 
                   <button
                     className="streat__button"
-                    onClick={() => deleteStreat(el.id)}
+                    onClick={() => deleteStreat(el.imei)}
                   >
-                  {isLoading?<LoadingOutlined />:<DeleteIcon />}
-                    
+                    {isLoading && deleteId === el.imei ? (
+                      <LoadingOutlined />
+                    ) : (
+                      <DeleteIcon />
+                    )} 
                   </button>
                 </li>
               );
